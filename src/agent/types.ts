@@ -1,6 +1,9 @@
 import type { z } from "zod";
-import type { Role } from "@prisma/client";
+import type { PrismaClient, Role } from "@prisma/client";
 import type { Actor } from "@/lib/actor";
+
+/** Same Prisma client the pipeline is tracing to — keeps tool reads/writes and the trace consistent in tests. */
+export type ToolDeps = { db: PrismaClient };
 
 export interface Tool<
   InputSchema extends z.ZodTypeAny = z.ZodTypeAny,
@@ -12,7 +15,11 @@ export interface Tool<
   requiresConfirmation: boolean;
   inputSchema: InputSchema;
   outputSchema: OutputSchema;
-  execute: (actor: Actor, args: z.infer<InputSchema>) => Promise<z.infer<OutputSchema>>;
+  execute: (
+    deps: ToolDeps,
+    actor: Actor,
+    args: z.infer<InputSchema>,
+  ) => Promise<z.infer<OutputSchema>>;
   /** Deterministic natural-language response — no LLM needed in the default (free) path. */
   respond: (args: z.infer<InputSchema>, result: z.infer<OutputSchema>) => string;
 }

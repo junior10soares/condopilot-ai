@@ -92,7 +92,7 @@ export async function runAgentTurn(
   }
 
   try {
-    const rawResult = await tool.execute(actor, parsedArgs.data);
+    const rawResult = await tool.execute({ db: prisma }, actor, parsedArgs.data);
     const result = tool.outputSchema.parse(rawResult);
     return finish(
       { status: "SUCCESS", message: tool.respond(parsedArgs.data, result), tool: toolName, result },

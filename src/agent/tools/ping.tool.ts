@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { db } from "@/lib/db";
 import { registerTool } from "@/agent/tool-registry";
 
 const inputSchema = z.object({});
@@ -13,7 +12,7 @@ registerTool(
     requiresConfirmation: false,
     inputSchema,
     outputSchema,
-    async execute(actor) {
+    async execute({ db }, actor) {
       const condominium = await db.condominium.findUniqueOrThrow({
         where: { id: actor.condominiumId },
       });

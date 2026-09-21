@@ -49,7 +49,7 @@ registerTool(
     requiresConfirmation: true,
     inputSchema: z.object({ amount: z.number() }),
     outputSchema: z.object({ ok: z.boolean() }),
-    async execute(_actor, args) {
+    async execute(_deps, _actor, args) {
       return { ok: args.amount > 0 };
     },
     respond() {

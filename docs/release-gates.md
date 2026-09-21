@@ -19,7 +19,7 @@ it's derived from — see `src/quality/gates.ts`.
 
 ## Security
 
-- [x] dependency audit — one high finding documented with disposition, see `docs/security.md`
+- [x] dependency audit — 0 vulnerabilities (`npm audit`); one prior high finding fixed via override, see `docs/security.md`
 - [x] secret scan
 - [x] static analysis
 - [x] authorization tests

@@ -37,7 +37,7 @@ export const gateGroups: GateGroup[] = [
       {
         label: "Auditoria de dependências",
         status: "pass",
-        note: "1 achado alto documentado em docs/security.md",
+        note: "0 vulnerabilidades (achado alto anterior corrigido via override)",
       },
       { label: "Varredura de segredos", status: "pass", note: "gitleaks no CI" },
       { label: "Análise estática", status: "pass", note: "ESLint com regras estritas do Next/TS" },

@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — see docs/design-system.md.
+ * Dark-first premium SaaS palette; token names are semantic so components
+ * never hard-code colors.
+ */
+:root {
+  --color-background: #070a12;
+  --color-surface: #0e1322;
+  --color-surface-elevated: #141b2d;
+  --color-text: #f7f8fc;
+  --color-muted: #9aa4b2;
+  --color-primary: #7c5cff;
+  --color-secondary: #20d4ff;
+  --color-success: #31d07c;
+  --color-warning: #ffb547;
+  --color-danger: #ff5d73;
+  --color-border: #1f273c;
+
+  --gradient-brand: linear-gradient(135deg, #7c5cff 0%, #20d4ff 100%);
+
+  --duration-micro: 180ms;
+  --duration-panel: 320ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-surface-elevated: var(--color-surface-elevated);
+  --color-text: var(--color-text);
+  --color-muted: var(--color-muted);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-danger: var(--color-danger);
+  --color-border: var(--color-border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}

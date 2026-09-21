@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  RESIDENT
+  MANAGER
+  ADMIN
+}
+
+model Condominium {
+  id        String   @id @default(cuid())
+  name      String
+  address   String?
+  createdAt DateTime @default(now())
+
+  users User[]
+
+  @@map("condominiums")
+}
+
+model User {
+  id            String      @id @default(cuid())
+  condominiumId String
+  condominium   Condominium @relation(fields: [condominiumId], references: [id], onDelete: Cascade)
+  name          String
+  email         String      @unique
+  passwordHash  String
+  role          Role        @default(RESIDENT)
+  unit          String?
+  createdAt     DateTime    @default(now())
+
+  @@index([condominiumId])
+  @@map("users")
+}

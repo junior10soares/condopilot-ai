@@ -3,6 +3,7 @@
 ## Threat model
 
 Consider at minimum:
+
 - authentication attacks;
 - broken access control;
 - IDOR;
@@ -46,6 +47,7 @@ Consider at minimum:
 ## Security testing
 
 The CI pipeline should include:
+
 - dependency audit;
 - secret scanning;
 - static analysis;

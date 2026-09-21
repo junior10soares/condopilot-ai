@@ -23,12 +23,12 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <SidebarNav />
       </aside>
 
-      <div className="flex flex-1 flex-col">
+      <div className="flex min-w-0 flex-1 flex-col">
         <header className="border-border bg-surface flex items-center justify-between border-b px-6 py-3">
           <span className="text-muted text-sm">{actor.role}</span>
           <SignOutButton />
         </header>
-        <main className="flex-1 p-6">{children}</main>
+        <main className="min-w-0 flex-1 p-6">{children}</main>
       </div>
     </div>
   );

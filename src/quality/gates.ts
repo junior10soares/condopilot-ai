@@ -28,11 +28,7 @@ export const gateGroups: GateGroup[] = [
         note: "matching de intenção + anti prompt-injection",
       },
       { label: "Testes E2E", status: "pass" },
-      {
-        label: "Smoke test",
-        status: "pending",
-        note: "planejado para R11, junto com o ambiente de demo limpo",
-      },
+      { label: "Smoke test", status: "pass", note: "/api/health + sign-in + 1 turno do agente" },
     ],
   },
   {
@@ -61,7 +57,11 @@ export const gateGroups: GateGroup[] = [
       { label: "Estados de carregamento", status: "pass" },
       { label: "Estados vazios", status: "pass" },
       { label: "Estados de erro", status: "pass" },
-      { label: "Checagem manual em mobile", status: "pending", note: "planejado para R11" },
+      {
+        label: "Checagem manual em mobile",
+        status: "pass",
+        note: "viewport 390px, sem overflow horizontal",
+      },
     ],
   },
   {
@@ -78,12 +78,16 @@ export const gateGroups: GateGroup[] = [
     gates: [
       { label: "Dados semeados", status: "pass" },
       { label: "Setup limpo (docker compose)", status: "pass" },
-      { label: "Landing page", status: "pending", note: "R10" },
+      { label: "Landing page", status: "pass" },
       { label: "Agent playground", status: "pass" },
       { label: "Execution trace", status: "pass", note: "inline no chat + Central de Segurança" },
-      { label: "Diagrama de arquitetura", status: "pending", note: "R11" },
-      { label: "Screenshots", status: "pending", note: "R11" },
-      { label: "Vídeo final", status: "pending", note: "R11" },
+      { label: "Diagrama de arquitetura", status: "pass", note: "Mermaid em docs/architecture.md" },
+      { label: "Screenshots", status: "pass", note: "docs/screenshots/" },
+      {
+        label: "Vídeo final",
+        status: "pass",
+        note: "docs/demo-video/demo.webm — automatizado, sem narração",
+      },
     ],
   },
 ];

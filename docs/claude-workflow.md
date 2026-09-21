@@ -27,6 +27,7 @@ Repeat implementation and convergence when gaps remain.
 ## Review prompts
 
 After implementation, ask Claude Code to:
+
 - review authorization;
 - review tool boundaries;
 - review tenant isolation;
@@ -38,6 +39,7 @@ After implementation, ask Claude Code to:
 ## Human checkpoints
 
 The human owner approves:
+
 - architectural trade-offs;
 - new external services;
 - production secrets;

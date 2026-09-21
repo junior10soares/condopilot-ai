@@ -42,6 +42,7 @@ Request
 ## Confirmation policy
 
 Require confirmation for:
+
 - destructive operations;
 - cancellation affecting other users;
 - financial actions;

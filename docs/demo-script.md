@@ -17,6 +17,7 @@ User:
 "Quais moradores estão inadimplentes?"
 
 Show live execution trace:
+
 - intent;
 - permission;
 - tool;
@@ -41,6 +42,7 @@ Show successful tool execution.
 Open execution detail.
 
 Show:
+
 - execution ID;
 - latency;
 - tools;
@@ -56,6 +58,7 @@ Show passing security and test gates.
 ## Scene 6 — Tests
 
 Show terminal or CI:
+
 - unit;
 - integration;
 - E2E;

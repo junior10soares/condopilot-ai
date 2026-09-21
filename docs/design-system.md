@@ -3,6 +3,7 @@
 ## Visual identity
 
 CondoPilot AI should feel:
+
 - intelligent;
 - premium;
 - technical;
@@ -14,6 +15,7 @@ CondoPilot AI should feel:
 Use semantic tokens rather than hard-coded colors.
 
 Suggested palette:
+
 - Background: #070A12
 - Surface: #0E1322
 - Surface elevated: #141B2D
@@ -34,6 +36,7 @@ Use the gradient primarily for hero emphasis, CTA, active states and selected ag
 
 Use a modern sans-serif.
 Clear hierarchy:
+
 - display;
 - heading;
 - body;
@@ -43,6 +46,7 @@ Clear hierarchy:
 ## Components
 
 Required reusable components:
+
 - Button
 - Card
 - Badge

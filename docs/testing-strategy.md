@@ -3,7 +3,9 @@
 ## Pyramid
 
 ### Unit
+
 Pure business logic:
+
 - authorization policies;
 - reservation rules;
 - validators;
@@ -11,7 +13,9 @@ Pure business logic:
 - prompt-independent agent decision helpers.
 
 ### Component
+
 UI:
+
 - forms;
 - tables;
 - dialogs;
@@ -20,6 +24,7 @@ UI:
 - accessibility behavior.
 
 ### Integration
+
 - API + database;
 - service + repository;
 - agent + mocked model;
@@ -27,10 +32,13 @@ UI:
 - authorization + tenant isolation.
 
 ### Contract/API
+
 Verify request/response schemas and error contracts.
 
 ### Agent evaluation
+
 Use deterministic fixtures to test:
+
 - intent recognition;
 - correct tool selection;
 - invalid tool argument handling;
@@ -40,7 +48,9 @@ Use deterministic fixtures to test:
 - hallucination-sensitive responses.
 
 ### E2E
+
 Critical user journeys:
+
 1. sign in;
 2. open agent;
 3. ask about delinquency;
@@ -51,7 +61,9 @@ Critical user journeys:
 8. verify unauthorized user cannot access it.
 
 ### Smoke
+
 A production-like environment must pass:
+
 - application startup;
 - health endpoint;
 - database connectivity;

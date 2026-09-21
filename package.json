@@ -12,9 +12,12 @@
     "test:watch": "vitest",
     "test:ci": "vitest run --coverage",
     "test:e2e": "node --env-file-if-exists=.env node_modules/.bin/playwright test",
+    "test:smoke": "node --env-file-if-exists=.env node_modules/.bin/playwright test e2e/smoke.spec.ts",
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "docs:screenshots": "tsx scripts/capture-screenshots.ts",
+    "docs:demo-video": "tsx scripts/record-demo.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

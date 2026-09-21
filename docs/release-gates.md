@@ -6,6 +6,7 @@ Live status is presented at `/quality` (Central de Qualidade) once signed in. Th
 it's derived from — see `src/quality/gates.ts`.
 
 ## Engineering
+
 - [x] typecheck
 - [x] lint
 - [x] unit tests
@@ -14,9 +15,10 @@ it's derived from — see `src/quality/gates.ts`.
 - [x] API/contract tests — n/a, no public external API at this stage
 - [x] agent evaluation tests
 - [x] E2E tests
-- [ ] smoke tests — planned for R11, alongside the clean demo environment
+- [x] smoke tests — `/api/health` + sign-in + one agent turn, `e2e/smoke.spec.ts`
 
 ## Security
+
 - [x] dependency audit — one high finding documented with disposition, see `docs/security.md`
 - [x] secret scan
 - [x] static analysis
@@ -27,26 +29,31 @@ it's derived from — see `src/quality/gates.ts`.
 - [x] sensitive-log review
 
 ## UX
+
 - [x] responsive
 - [x] keyboard accessible
 - [x] reduced-motion
 - [x] loading states
 - [x] empty states
 - [x] error states
-- [ ] mobile sanity check — planned for R11
+- [x] mobile sanity check — `e2e/mobile-sanity.spec.ts`, 390px viewport, no horizontal overflow
 
 ## Spec
+
 - [x] checklist reviewed
 - [x] analyze clean
 - [x] tasks complete
 - [x] converge reports complete
 
 ## Demo
+
 - [x] seed data
 - [x] clean setup
-- [ ] landing page — R10
+- [x] landing page
 - [x] agent playground
 - [x] execution trace
-- [ ] architecture diagram — R11
-- [ ] screenshots — R11
-- [ ] final video — R11
+- [x] architecture diagram — Mermaid in `docs/architecture.md`
+- [x] screenshots — `docs/screenshots/`
+- [x] final video — `docs/demo-video/demo.webm` (automated walkthrough, no narration)
+
+All gates applicable to this stage are green.

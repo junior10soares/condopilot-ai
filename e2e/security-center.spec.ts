@@ -40,7 +40,7 @@ test("manager sees a denied action after a resident tries a manager-only tool", 
 
   await managerPage.getByRole("link", { name: "Segurança" }).click();
   await expect(managerPage).toHaveURL(/\/security/);
-  await expect(managerPage.getByRole("cell", { name: "Carlos Silva" })).toBeVisible();
+  await expect(managerPage.getByRole("cell", { name: "Carlos Silva" }).first()).toBeVisible();
   await expect(managerPage.getByText("Negado").first()).toBeVisible();
   await managerContext.close();
 });

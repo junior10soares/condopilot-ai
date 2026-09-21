@@ -2,48 +2,51 @@
 
 The project cannot be declared complete until all applicable gates pass.
 
+Live status is presented at `/quality` (Central de Qualidade) once signed in. This file is the source of truth
+it's derived from — see `src/quality/gates.ts`.
+
 ## Engineering
-- [ ] typecheck
-- [ ] lint
-- [ ] unit tests
-- [ ] component tests
-- [ ] integration tests
-- [ ] API/contract tests
-- [ ] agent evaluation tests
-- [ ] E2E tests
-- [ ] smoke tests
+- [x] typecheck
+- [x] lint
+- [x] unit tests
+- [x] component tests
+- [x] integration tests
+- [x] API/contract tests — n/a, no public external API at this stage
+- [x] agent evaluation tests
+- [x] E2E tests
+- [ ] smoke tests — planned for R11, alongside the clean demo environment
 
 ## Security
-- [ ] dependency audit
-- [ ] secret scan
-- [ ] static analysis
-- [ ] authorization tests
-- [ ] tenant isolation tests
-- [ ] prompt injection tests
-- [ ] rate-limit tests
-- [ ] sensitive-log review
+- [x] dependency audit — one high finding documented with disposition, see `docs/security.md`
+- [x] secret scan
+- [x] static analysis
+- [x] authorization tests
+- [x] tenant isolation tests
+- [x] prompt injection tests
+- [x] rate-limit tests
+- [x] sensitive-log review
 
 ## UX
-- [ ] responsive
-- [ ] keyboard accessible
-- [ ] reduced-motion
-- [ ] loading states
-- [ ] empty states
-- [ ] error states
-- [ ] mobile sanity check
+- [x] responsive
+- [x] keyboard accessible
+- [x] reduced-motion
+- [x] loading states
+- [x] empty states
+- [x] error states
+- [ ] mobile sanity check — planned for R11
 
 ## Spec
-- [ ] checklist reviewed
-- [ ] analyze clean
-- [ ] tasks complete
-- [ ] converge reports complete
+- [x] checklist reviewed
+- [x] analyze clean
+- [x] tasks complete
+- [x] converge reports complete
 
 ## Demo
-- [ ] seed data
-- [ ] clean setup
-- [ ] landing page
-- [ ] agent playground
-- [ ] execution trace
-- [ ] architecture diagram
-- [ ] screenshots
-- [ ] final video
+- [x] seed data
+- [x] clean setup
+- [ ] landing page — R10
+- [x] agent playground
+- [x] execution trace
+- [ ] architecture diagram — R11
+- [ ] screenshots — R11
+- [ ] final video — R11

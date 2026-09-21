@@ -7,3 +7,4 @@ import "./get-my-debt.tool";
 import "./check-reservation-availability.tool";
 import "./create-reservation.tool";
 import "./cancel-my-reservation.tool";
+import "./send-broadcast-notification.tool";

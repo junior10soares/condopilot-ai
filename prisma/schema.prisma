@@ -112,3 +112,18 @@ model Reservation {
   @@index([commonAreaId, startsAt, endsAt])
   @@map("reservations")
 }
+
+model Notification {
+  id              String   @id @default(cuid())
+  condominiumId   String
+  recipientUserId String
+  sentByUserId    String
+  channel         String
+  subject         String
+  body            String
+  sentAt          DateTime @default(now())
+
+  @@index([condominiumId])
+  @@index([recipientUserId])
+  @@map("notifications")
+}

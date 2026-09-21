@@ -10,5 +10,5 @@ test("manager sees the reservations page with the seeded common area", async ({ 
   await page.getByRole("link", { name: "Reservas" }).click();
   await expect(page).toHaveURL(/\/reservations/);
   await expect(page.getByRole("heading", { name: "Reservas" })).toBeVisible();
-  await expect(page.getByText("Salão de Festas")).toBeVisible();
+  await expect(page.getByText("Áreas disponíveis: Salão de Festas")).toBeVisible();
 });

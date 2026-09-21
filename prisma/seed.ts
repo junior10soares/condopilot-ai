@@ -103,6 +103,16 @@ async function main() {
     },
   });
 
+  await db.commonArea.upsert({
+    where: { id: "demo-common-area-salao" },
+    update: {},
+    create: {
+      id: "demo-common-area-salao",
+      condominiumId: condominium.id,
+      name: "Salão de Festas",
+    },
+  });
+
   console.log("Seed concluído.");
   console.log(`  manager@condopilot.demo / ${DEMO_PASSWORD}`);
   console.log(`  carlos@condopilot.demo / ${DEMO_PASSWORD}`);

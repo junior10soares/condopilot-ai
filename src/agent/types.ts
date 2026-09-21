@@ -5,6 +5,15 @@ import type { Actor } from "@/lib/actor";
 /** Same Prisma client the pipeline is tracing to — keeps tool reads/writes and the trace consistent in tests. */
 export type ToolDeps = { db: PrismaClient };
 
+/** A tool throws this for an expected business failure (conflict, not found...) with a safe, pre-written
+ * user-facing message — anything else thrown is treated as an unexpected crash with a generic message. */
+export class ToolExecutionError extends Error {
+  constructor(public readonly userMessage: string) {
+    super(userMessage);
+    this.name = "ToolExecutionError";
+  }
+}
+
 export interface Tool<
   InputSchema extends z.ZodTypeAny = z.ZodTypeAny,
   OutputSchema extends z.ZodTypeAny = z.ZodTypeAny,

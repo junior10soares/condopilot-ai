@@ -21,6 +21,11 @@ enum AgentTurnStatus {
   PENDING_CONFIRMATION
 }
 
+enum ReservationStatus {
+  CONFIRMED
+  CANCELLED
+}
+
 model Condominium {
   id        String   @id @default(cuid())
   name      String
@@ -76,4 +81,34 @@ model Charge {
   @@index([condominiumId])
   @@index([userId])
   @@map("charges")
+}
+
+model CommonArea {
+  id            String   @id @default(cuid())
+  condominiumId String
+  name          String
+  createdAt     DateTime @default(now())
+
+  reservations Reservation[]
+
+  @@index([condominiumId])
+  @@map("common_areas")
+}
+
+model Reservation {
+  id            String            @id @default(cuid())
+  condominiumId String
+  commonAreaId  String
+  commonArea    CommonArea        @relation(fields: [commonAreaId], references: [id], onDelete: Cascade)
+  userId        String
+  startsAt      DateTime
+  endsAt        DateTime
+  status        ReservationStatus @default(CONFIRMED)
+  note          String?
+  createdAt     DateTime          @default(now())
+  cancelledAt   DateTime?
+
+  @@index([condominiumId])
+  @@index([commonAreaId, startsAt, endsAt])
+  @@map("reservations")
 }

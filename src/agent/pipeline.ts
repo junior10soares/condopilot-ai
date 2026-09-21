@@ -5,7 +5,7 @@ import { AuthorizationError, requireRole } from "@/lib/authz";
 import { getTool } from "@/agent/tool-registry";
 import { getModelProvider } from "@/agent/providers";
 import { recordExecution } from "@/agent/trace";
-import type { AgentTurnResult } from "@/agent/types";
+import { ToolExecutionError, type AgentTurnResult } from "@/agent/types";
 import "@/agent/tools"; // side-effect: registers every business tool
 
 const turnInputSchema = z.object({ input: z.string().min(1).max(2000) });
@@ -100,18 +100,13 @@ export async function runAgentTurn(
       parsedArgs.data,
       "SUCCESS",
     );
-  } catch {
+  } catch (error) {
     // Tool failures never surface as a fabricated success — see docs/agent-contract.md.
-    return finish(
-      {
-        status: "ERROR",
-        message: "Não consegui concluir essa ação agora. Tente novamente em instantes.",
-        tool: toolName,
-      },
-      toolName,
-      parsedArgs.data,
-      "ERROR",
-    );
+    const message =
+      error instanceof ToolExecutionError
+        ? error.userMessage
+        : "Não consegui concluir essa ação agora. Tente novamente em instantes.";
+    return finish({ status: "ERROR", message, tool: toolName }, toolName, parsedArgs.data, "ERROR");
   }
 
   async function finish(

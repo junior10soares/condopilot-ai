@@ -62,3 +62,18 @@ model AgentExecution {
   @@index([condominiumId, createdAt])
   @@map("agent_executions")
 }
+
+model Charge {
+  id            String    @id @default(cuid())
+  condominiumId String
+  userId        String
+  description   String
+  amountCents   Int
+  dueDate       DateTime
+  paidAt        DateTime?
+  createdAt     DateTime  @default(now())
+
+  @@index([condominiumId])
+  @@index([userId])
+  @@map("charges")
+}

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { registerTool } from "@/agent/tool-registry";
+import { matchesAny } from "@/agent/match";
 
 const inputSchema = z.object({});
 const outputSchema = z.object({ condominiumName: z.string() });
@@ -22,9 +23,5 @@ registerTool(
       return `Tudo certo! Estou conectado ao ${result.condominiumName}.`;
     },
   },
-  (input) => {
-    const normalized = input.toLowerCase();
-    if (/\b(ping|está (a[ií])|esta (a[ií]))\b/.test(normalized)) return {};
-    return null;
-  },
+  (input) => (matchesAny(input, ["ping", "está aí", "esta ai"]) ? {} : null),
 );

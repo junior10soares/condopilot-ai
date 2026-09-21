@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { registerTool } from "@/agent/tool-registry";
+import { matchesAny } from "@/agent/match";
 import { listUsersForCondominium } from "@/repositories/users";
 import { presentResidentsForActor } from "@/lib/privacy";
 
@@ -29,10 +30,13 @@ registerTool(
       return `Encontrei ${result.residents.length} morador(es): ${list}.`;
     },
   },
-  (input) => {
-    const normalized = input.toLowerCase();
-    if (/\b(quem mora|lista de moradores|moradores do cond|listar moradores)\b/.test(normalized))
-      return {};
-    return null;
-  },
+  (input) =>
+    matchesAny(input, [
+      "quem mora",
+      "lista de moradores",
+      "moradores do condomínio",
+      "listar moradores",
+    ])
+      ? {}
+      : null,
 );

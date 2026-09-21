@@ -14,6 +14,7 @@ const statusLabel: Record<AgentTurnResult["status"], string> = {
   CLARIFY: "esclarecimento",
   ERROR: "erro",
   PENDING_CONFIRMATION: "aguardando confirmação",
+  RATE_LIMITED: "muitas solicitações",
 };
 
 const statusVariant: Record<
@@ -25,6 +26,7 @@ const statusVariant: Record<
   CLARIFY: "warning",
   ERROR: "danger",
   PENDING_CONFIRMATION: "warning",
+  RATE_LIMITED: "warning",
 };
 
 export function AgentChat() {

@@ -19,6 +19,7 @@ enum AgentTurnStatus {
   CLARIFY
   ERROR
   PENDING_CONFIRMATION
+  RATE_LIMITED
 }
 
 enum ReservationStatus {

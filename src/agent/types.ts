@@ -49,4 +49,5 @@ export type AgentTurnResult =
   | { status: "DENIED"; message: string; tool: string }
   | { status: "CLARIFY"; message: string }
   | { status: "ERROR"; message: string; tool?: string }
-  | { status: "PENDING_CONFIRMATION"; message: string; tool: string; args: unknown };
+  | { status: "PENDING_CONFIRMATION"; message: string; tool: string; args: unknown }
+  | { status: "RATE_LIMITED"; message: string };

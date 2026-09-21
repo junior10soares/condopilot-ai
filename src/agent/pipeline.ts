@@ -6,9 +6,13 @@ import { getTool } from "@/agent/tool-registry";
 import { getModelProvider } from "@/agent/providers";
 import { recordExecution } from "@/agent/trace";
 import { ToolExecutionError, type AgentTurnResult } from "@/agent/types";
+import { checkRateLimit } from "@/lib/rate-limit";
 import "@/agent/tools"; // side-effect: registers every business tool
 
 const turnInputSchema = z.object({ input: z.string().min(1).max(2000) });
+
+const RATE_LIMIT_TURNS = 20;
+const RATE_LIMIT_WINDOW_MS = 10_000;
 
 /** When the caller is resending a previously-pending confirmation. */
 export type ConfirmedCall = { tool: string; args: unknown };
@@ -27,6 +31,19 @@ export async function runAgentTurn(
   }
 
   const input = parsedTurn.data.input;
+
+  if (!checkRateLimit(actor.userId, RATE_LIMIT_TURNS, RATE_LIMIT_WINDOW_MS)) {
+    return finish(
+      {
+        status: "RATE_LIMITED",
+        message: "Muitas solicitações em pouco tempo. Aguarde alguns segundos e tente de novo.",
+      },
+      null,
+      undefined,
+      "RATE_LIMITED",
+    );
+  }
+
   let toolName: string;
   let rawArgs: unknown;
 

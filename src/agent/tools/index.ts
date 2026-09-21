@@ -1,0 +1,3 @@
+// Side-effect barrel: importing this file registers every business tool.
+// R03+ add one `*.tool.ts` file per capability and import it here.
+import "./ping.tool";

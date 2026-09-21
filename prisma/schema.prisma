@@ -13,6 +13,14 @@ enum Role {
   ADMIN
 }
 
+enum AgentTurnStatus {
+  SUCCESS
+  DENIED
+  CLARIFY
+  ERROR
+  PENDING_CONFIRMATION
+}
+
 model Condominium {
   id        String   @id @default(cuid())
   name      String
@@ -37,4 +45,20 @@ model User {
 
   @@index([condominiumId])
   @@map("users")
+}
+
+model AgentExecution {
+  id            String          @id @default(cuid())
+  condominiumId String
+  userId        String
+  input         String
+  toolName      String?
+  toolArgs      Json?
+  status        AgentTurnStatus
+  errorCode     String?
+  latencyMs     Int
+  createdAt     DateTime        @default(now())
+
+  @@index([condominiumId, createdAt])
+  @@map("agent_executions")
 }

@@ -16,12 +16,19 @@ export function SidebarNav() {
             key={item.href}
             href={item.href}
             aria-current={active ? "page" : undefined}
-            className={`rounded-lg px-3 py-2 text-sm transition-colors duration-[var(--duration-micro)] ${
+            className={`relative rounded-lg px-3 py-2 text-sm transition-all duration-[var(--duration-micro)] ${
               active
-                ? "bg-surface-elevated text-text"
-                : "text-muted hover:bg-surface-elevated hover:text-text"
+                ? "bg-surface-elevated text-text pl-4"
+                : "text-muted hover:bg-surface-elevated hover:text-text hover:pl-4"
             }`}
           >
+            {active && (
+              <span
+                aria-hidden
+                className="absolute top-1/2 left-0 h-4 w-1 -translate-y-1/2 rounded-full"
+                style={{ background: "var(--gradient-brand)" }}
+              />
+            )}
             {item.label}
           </Link>
         );

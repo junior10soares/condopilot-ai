@@ -16,9 +16,13 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   return (
     <div className="bg-background flex min-h-screen">
       <aside className="border-border bg-surface flex w-60 flex-col border-r">
-        <div className="px-4 py-5">
-          <p className="text-text text-sm font-semibold">CondoPilot AI</p>
-          <p className="text-muted mt-0.5 text-xs">{condominium?.name}</p>
+        <div className="flex items-center gap-2 px-4 py-5">
+          {/* eslint-disable-next-line @next/next/no-img-element -- small static local SVG */}
+          <img src="/logo-mark.svg" alt="" width={28} height={28} className="rounded-md" />
+          <div>
+            <p className="text-text text-sm font-semibold">CondoPilot AI</p>
+            <p className="text-muted mt-0.5 text-xs">{condominium?.name}</p>
+          </div>
         </div>
         <SidebarNav />
       </aside>

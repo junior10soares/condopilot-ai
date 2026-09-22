@@ -38,17 +38,17 @@ export default async function QualityPage() {
       </p>
 
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div className="border-border bg-surface rounded-xl border p-4">
+        <div className="border-border bg-surface hover:border-primary/40 rounded-xl border p-4 transition-all duration-[var(--duration-panel)] hover:-translate-y-0.5">
           <p className="text-text text-2xl font-semibold">{unitCases}</p>
           <p className="text-muted text-xs">
             testes unit/component/integration em {unitFiles} arquivos
           </p>
         </div>
-        <div className="border-border bg-surface rounded-xl border p-4">
+        <div className="border-border bg-surface hover:border-primary/40 rounded-xl border p-4 transition-all duration-[var(--duration-panel)] hover:-translate-y-0.5">
           <p className="text-text text-2xl font-semibold">{e2e.cases}</p>
           <p className="text-muted text-xs">cenários E2E em {e2e.files} arquivos</p>
         </div>
-        <div className="border-border bg-surface rounded-xl border p-4">
+        <div className="border-border bg-surface hover:border-primary/40 rounded-xl border p-4 transition-all duration-[var(--duration-panel)] hover:-translate-y-0.5">
           <p className="text-text text-2xl font-semibold">CI</p>
           <p className="text-muted text-xs">execução autoritativa em .github/workflows/ci.yml</p>
         </div>

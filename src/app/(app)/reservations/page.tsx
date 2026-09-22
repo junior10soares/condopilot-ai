@@ -8,6 +8,7 @@ import {
 import { DataTable, type Column } from "@/components/ui/data-table";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { cancelReservationAction } from "./actions";
 
 function formatDateTime(date: Date) {
@@ -30,9 +31,9 @@ function CancelButton({ reservationId }: { reservationId: string }) {
         await cancelReservationAction(reservationId);
       }}
     >
-      <button type="submit" className="text-danger text-sm hover:underline">
+      <Button type="submit" variant="danger" size="sm">
         Cancelar
-      </button>
+      </Button>
     </form>
   );
 }

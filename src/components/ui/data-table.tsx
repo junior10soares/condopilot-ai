@@ -31,7 +31,10 @@ export function DataTable<T extends { id: string }>({
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.id} className="border-border border-b last:border-0">
+            <tr
+              key={row.id}
+              className="border-border hover:bg-surface-elevated/60 border-b transition-colors duration-[var(--duration-micro)] last:border-0"
+            >
               {columns.map((column) => (
                 <td key={column.key} className="text-text px-4 py-2.5">
                   {column.render(row)}

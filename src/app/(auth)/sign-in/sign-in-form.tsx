@@ -1,7 +1,11 @@
 "use client";
 
 import { useActionState } from "react";
+import { Button } from "@/components/ui/button";
 import { signInAction } from "./actions";
+
+const inputClasses =
+  "border-border bg-surface text-text focus-visible:border-secondary rounded-lg border px-3 py-2 outline-none transition-colors duration-[var(--duration-micro)]";
 
 export function SignInForm() {
   const [error, formAction, pending] = useActionState(signInAction, undefined);
@@ -18,7 +22,7 @@ export function SignInForm() {
           type="email"
           required
           autoComplete="email"
-          className="border-border bg-surface text-text focus-visible:border-secondary rounded-lg border px-3 py-2 outline-none"
+          className={inputClasses}
         />
       </div>
 
@@ -32,24 +36,19 @@ export function SignInForm() {
           type="password"
           required
           autoComplete="current-password"
-          className="border-border bg-surface text-text focus-visible:border-secondary rounded-lg border px-3 py-2 outline-none"
+          className={inputClasses}
         />
       </div>
 
       {error ? (
-        <p role="alert" className="text-danger text-sm">
+        <p role="alert" className="text-danger animate-fade-in-up text-sm">
           {error}
         </p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="mt-2 rounded-lg px-4 py-2 font-medium text-white transition-opacity duration-[var(--duration-micro)] disabled:opacity-60"
-        style={{ background: "var(--gradient-brand)" }}
-      >
+      <Button type="submit" loading={pending} className="mt-2 w-full">
         {pending ? "Entrando..." : "Entrar"}
-      </button>
+      </Button>
     </form>
   );
 }

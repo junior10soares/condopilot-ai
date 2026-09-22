@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { AgentTurnResult } from "@/agent/types";
 import type { ConfirmedCall } from "@/agent/pipeline";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { sendAgentMessage } from "./actions";
 
 type Turn = { id: string; userText: string; result: AgentTurnResult | null };
@@ -28,6 +29,19 @@ const statusVariant: Record<
   PENDING_CONFIRMATION: "warning",
   RATE_LIMITED: "warning",
 };
+
+function ThinkingIndicator() {
+  return (
+    <p className="text-muted flex items-center gap-1.5" aria-live="polite">
+      <span>Pensando</span>
+      <span className="flex gap-0.5">
+        <span className="animate-pulse-dot h-1 w-1 rounded-full bg-current [animation-delay:0ms]" />
+        <span className="animate-pulse-dot h-1 w-1 rounded-full bg-current [animation-delay:150ms]" />
+        <span className="animate-pulse-dot h-1 w-1 rounded-full bg-current [animation-delay:300ms]" />
+      </span>
+    </p>
+  );
+}
 
 export function AgentChat() {
   const [turns, setTurns] = useState<Turn[]>([]);
@@ -57,23 +71,21 @@ export function AgentChat() {
     <div className="flex h-[calc(100vh-8rem)] flex-col">
       <div className="border-border bg-surface flex-1 space-y-4 overflow-y-auto rounded-xl border p-4">
         {turns.length === 0 && (
-          <p className="text-muted text-sm">
+          <p className="text-muted animate-fade-in-up text-sm">
             Experimente: &quot;Quais moradores estão inadimplentes?&quot; ou &quot;Reserve o salão
             para Carlos amanhã às 19h.&quot;
           </p>
         )}
         {turns.map((turn) => (
-          <div key={turn.id} className="space-y-2">
+          <div key={turn.id} className="animate-fade-in-up space-y-2">
             <div className="bg-surface-elevated text-text ml-auto max-w-[80%] rounded-xl rounded-br-sm px-3 py-2 text-sm">
               {turn.userText}
             </div>
             <div className="border-border text-text max-w-[80%] rounded-xl rounded-bl-sm border px-3 py-2 text-sm">
               {turn.result === null ? (
-                <p className="text-muted" aria-live="polite">
-                  Pensando...
-                </p>
+                <ThinkingIndicator />
               ) : (
-                <>
+                <div className="animate-fade-in-up">
                   <p>{turn.result.message}</p>
                   <div className="text-muted mt-1.5 flex items-center gap-2 text-xs">
                     <span>{"tool" in turn.result ? turn.result.tool : "—"}</span>
@@ -81,25 +93,26 @@ export function AgentChat() {
                       {statusLabel[turn.result.status]}
                     </Badge>
                   </div>
-                </>
+                </div>
               )}
               {turn.result?.status === "PENDING_CONFIRMATION" && (
-                <div className="mt-2 flex gap-2">
-                  <button
+                <div className="animate-fade-in-up mt-2 flex gap-2">
+                  <Button
                     type="button"
+                    size="sm"
                     disabled={busyId !== null}
                     onClick={() => {
                       const result = turn.result;
                       if (!result || result.status !== "PENDING_CONFIRMATION") return;
                       void runTurn(turn.userText, { tool: result.tool, args: result.args });
                     }}
-                    className="rounded-lg px-3 py-1.5 text-xs font-medium text-white"
-                    style={{ background: "var(--gradient-brand)" }}
                   >
                     Confirmar
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
+                    variant="secondary"
+                    size="sm"
                     onClick={() =>
                       setTurns((prev) =>
                         prev.map((t) =>
@@ -109,10 +122,9 @@ export function AgentChat() {
                         ),
                       )
                     }
-                    className="border-border text-muted hover:text-text rounded-lg border px-3 py-1.5 text-xs"
                   >
                     Cancelar
-                  </button>
+                  </Button>
                 </div>
               )}
             </div>
@@ -130,16 +142,11 @@ export function AgentChat() {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Pergunte algo ao CondoPilot..."
           disabled={busyId !== null}
-          className="border-border bg-surface text-text focus-visible:border-secondary flex-1 rounded-lg border px-3 py-2 outline-none"
+          className="border-border bg-surface text-text focus-visible:border-secondary flex-1 rounded-lg border px-3 py-2 transition-colors duration-[var(--duration-micro)] outline-none"
         />
-        <button
-          type="submit"
-          disabled={busyId !== null || input.trim() === ""}
-          className="rounded-lg px-4 py-2 font-medium text-white disabled:opacity-60"
-          style={{ background: "var(--gradient-brand)" }}
-        >
+        <Button type="submit" loading={busyId !== null} disabled={input.trim() === ""}>
           {busyId !== null ? "Enviando..." : "Enviar"}
-        </button>
+        </Button>
       </form>
     </div>
   );

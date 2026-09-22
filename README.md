@@ -1,4 +1,4 @@
-# CondoPilot AI
+<img src="public/logo-lockup.svg" alt="CondoPilot AI" width="360" />
 
 > An AI agent that doesn't just answer. It acts.
 

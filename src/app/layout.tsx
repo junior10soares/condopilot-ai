@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -12,9 +12,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const title = "CondoPilot AI";
+const description = "An AI agent that doesn't just answer. It acts.";
+
 export const metadata: Metadata = {
-  title: "CondoPilot AI",
-  description: "An AI agent that doesn't just answer. It acts.",
+  metadataBase: new URL(siteUrl),
+  title: { default: title, template: `%s · ${title}` },
+  description,
+  openGraph: { title, description, type: "website", siteName: title },
+  twitter: { card: "summary_large_image", title, description },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#070a12",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

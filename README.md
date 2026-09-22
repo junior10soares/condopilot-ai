@@ -1,5 +1,12 @@
 <img src="public/logo-lockup.svg" alt="CondoPilot AI" width="360" />
 
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue?logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?logo=tailwindcss)
+![Prisma](https://img.shields.io/badge/Prisma-Postgres-2D3748?logo=prisma)
+![Tests](https://img.shields.io/badge/tests-61%2F61%20unit%20%C2%B7%2017%2F17%20e2e-31D07C)
+![License](https://img.shields.io/badge/license-MIT-9AA4B2)
+
 > An AI agent that doesn't just answer. It acts.
 
 CondoPilot AI is a portfolio-grade demonstration of secure agent engineering applied to condominium operations.

@@ -18,7 +18,7 @@ registerTool(
   {
     name: "getResidentsInDebt",
     description: "Lista moradores inadimplentes (visão gerencial)",
-    // Financial visibility rule: only management can see who ELSE owes money.
+    // Regra de visibilidade financeira: só a gestão pode ver quem MAIS deve.
     minRole: "MANAGER",
     requiresConfirmation: false,
     inputSchema,

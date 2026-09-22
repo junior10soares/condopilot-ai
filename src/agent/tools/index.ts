@@ -1,5 +1,5 @@
-// Side-effect barrel: importing this file registers every business tool.
-// R03+ add one `*.tool.ts` file per capability and import it here.
+// Barril de efeito colateral: importar este arquivo registra todas as tools de negócio.
+// R03+ adiciona um arquivo `*.tool.ts` por capacidade e importa aqui.
 import "./ping.tool";
 import "./list-residents.tool";
 import "./get-residents-in-debt.tool";

@@ -24,7 +24,7 @@ registerTool(
     inputSchema,
     outputSchema,
     async execute({ db }, actor) {
-      // Always self-scoped via the authenticated actor — never from parsed text.
+      // Sempre restrito ao ator autenticado — nunca vem do texto interpretado.
       const charges = await listChargesForUser(db, actor.condominiumId, actor.userId);
       const openCharges = charges.filter((c) => c.paidAt === null && c.dueDate < new Date());
       return {

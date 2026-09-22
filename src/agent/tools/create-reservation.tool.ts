@@ -27,7 +27,7 @@ registerTool(
     name: "createReservation",
     description: "Reserva o Salão de Festas",
     minRole: "RESIDENT",
-    // Financial/consequential action per docs/agent-contract.md.
+    // Ação financeira/consequente, conforme docs/agent-contract.md.
     requiresConfirmation: true,
     inputSchema,
     outputSchema,

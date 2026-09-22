@@ -11,7 +11,7 @@ registerTool(
   {
     name: "sendBroadcastNotification",
     description: "Envia um aviso simulado para todos os moradores",
-    // Bulk operation with side effects across every resident — management only.
+    // Operação em massa, com efeito sobre todos os moradores — só a gestão pode.
     minRole: "MANAGER",
     requiresConfirmation: true,
     inputSchema,

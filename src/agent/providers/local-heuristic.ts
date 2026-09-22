@@ -2,10 +2,11 @@ import type { ModelProvider } from "@/agent/types";
 import { listMatchers } from "@/agent/tool-registry";
 
 /**
- * Free, deterministic, no-API-key planner. Matches user text against fixed
- * pattern rules contributed by each registered tool — there is no
- * instruction-following model in this path, so text like "ignore previous
- * instructions" has no special effect: it just fails to match any pattern.
+ * Planejador grátis, determinístico, sem chave de API. Casa o texto do
+ * usuário contra padrões fixos contribuídos por cada tool registrada — não
+ * existe nenhum modelo seguindo instruções nesse caminho, então texto como
+ * "ignore as instruções anteriores" não tem efeito nenhum: simplesmente não
+ * casa com nenhum padrão.
  */
 export const localHeuristicProvider: ModelProvider = {
   name: "local-heuristic",

@@ -1,10 +1,14 @@
 const RESERVATION_DURATION_HOURS = 3;
 
 /**
- * Deterministic, bounded date/time extraction for the reservation demo phrasing
- * ("amanhã às 19h", "hoje às 20h30"). Anything it doesn't recognize returns null,
- * which the tool's matcher treats as "no match" — the pipeline then falls through
- * to `clarify` rather than guessing a date (see docs/agent-contract.md).
+ * Extração de data/hora determinística e limitada, só para as frases de demo de
+ * reserva ("amanhã às 19h", "hoje às 20h30"). Qualquer coisa que não reconhece
+ * retorna null, e o matcher da tool trata isso como "não casou" — o pipeline
+ * então cai em `clarify` em vez de chutar uma data (ver docs/agent-contract.md).
+ * Só entende "hoje"/"amanhã" de propósito — nomes de dia da semana ("sexta") ou
+ * datas explícitas ("15/03") não são suportados por este caminho gratuito; o
+ * provedor openai-compatible (src/agent/providers/openai-compatible.ts) resolve
+ * isso melhor quando um LLM real está configurado.
  */
 export function parseReservationTime(
   input: string,

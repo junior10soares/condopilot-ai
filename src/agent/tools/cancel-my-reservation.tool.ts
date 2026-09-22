@@ -12,7 +12,7 @@ registerTool(
     name: "cancelMyReservation",
     description: "Cancela sua próxima reserva confirmada do Salão de Festas",
     minRole: "RESIDENT",
-    // Cancellation affecting the resident's own booking is still consequential — confirm first.
+    // Cancelamento afeta a própria reserva do morador, mas ainda é consequente — confirma antes.
     requiresConfirmation: true,
     inputSchema,
     outputSchema,
@@ -22,7 +22,7 @@ registerTool(
       });
       if (!commonArea) throw new ToolExecutionError("Não encontrei essa área comum no condomínio.");
 
-      // Self-scoped: only ever the actor's own next upcoming confirmed reservation.
+      // Escopo restrito ao próprio ator: só a próxima reserva confirmada dele mesmo.
       const next = await db.reservation.findFirst({
         where: {
           condominiumId: actor.condominiumId,

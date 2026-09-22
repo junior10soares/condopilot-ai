@@ -17,10 +17,11 @@ export async function recordExecution(
     data: {
       condominiumId: params.actor.condominiumId,
       userId: params.actor.userId,
-      // Trace bound: never store more than a fixed slice of raw input.
+      // Limite do trace: nunca guarda mais que um trecho fixo do texto original.
       input: params.input.slice(0, 2000),
       toolName: params.toolName,
-      // toolArgs is zod-validated business data (ids, dates, names) — never secrets.
+      // toolArgs já passou pela validação do zod — são dados de negócio (ids, datas, nomes),
+      // nunca segredos.
       toolArgs:
         params.toolArgs === undefined ? undefined : JSON.parse(JSON.stringify(params.toolArgs)),
       status: params.status,

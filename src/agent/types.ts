@@ -2,11 +2,12 @@ import type { z } from "zod";
 import type { PrismaClient, Role } from "@prisma/client";
 import type { Actor } from "@/lib/actor";
 
-/** Same Prisma client the pipeline is tracing to — keeps tool reads/writes and the trace consistent in tests. */
+/** O mesmo cliente Prisma que o pipeline usa no trace — mantém leituras/escritas da tool e o trace consistentes nos testes. */
 export type ToolDeps = { db: PrismaClient };
 
-/** A tool throws this for an expected business failure (conflict, not found...) with a safe, pre-written
- * user-facing message — anything else thrown is treated as an unexpected crash with a generic message. */
+/** Uma tool lança isso para uma falha de negócio esperada (conflito, não encontrado...) com uma
+ * mensagem segura já escrita para o usuário — qualquer outra coisa lançada é tratada como um
+ * erro inesperado, com mensagem genérica. */
 export class ToolExecutionError extends Error {
   constructor(public readonly userMessage: string) {
     super(userMessage);
@@ -29,11 +30,11 @@ export interface Tool<
     actor: Actor,
     args: z.infer<InputSchema>,
   ) => Promise<z.infer<OutputSchema>>;
-  /** Deterministic natural-language response — no LLM needed in the default (free) path. */
+  /** Resposta em linguagem natural determinística — não precisa de LLM no caminho padrão (grátis). */
   respond: (args: z.infer<InputSchema>, result: z.infer<OutputSchema>) => string;
 }
 
-/** A matcher turns raw user text into this tool's args, or returns null if it doesn't apply. */
+/** Um matcher transforma o texto bruto do usuário nos args desta tool, ou retorna null se não se aplica. */
 export type ToolMatcher = (input: string) => Record<string, unknown> | null;
 
 export type PlannerDecision =

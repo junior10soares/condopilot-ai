@@ -7,14 +7,14 @@ import { getModelProvider } from "@/agent/providers";
 import { recordExecution } from "@/agent/trace";
 import { ToolExecutionError, type AgentTurnResult } from "@/agent/types";
 import { checkRateLimit } from "@/lib/rate-limit";
-import "@/agent/tools"; // side-effect: registers every business tool
+import "@/agent/tools"; // efeito colateral: registra todas as tools de negócio
 
 const turnInputSchema = z.object({ input: z.string().min(1).max(2000) });
 
 const RATE_LIMIT_TURNS = 20;
 const RATE_LIMIT_WINDOW_MS = 10_000;
 
-/** When the caller is resending a previously-pending confirmation. */
+/** Quando o cliente está reenviando uma confirmação pendente. */
 export type ConfirmedCall = { tool: string; args: unknown };
 
 export async function runAgentTurn(
@@ -51,7 +51,17 @@ export async function runAgentTurn(
     toolName = confirmed.tool;
     rawArgs = confirmed.args;
   } else {
-    const decision = await getModelProvider().plan(input, actor);
+    let decision;
+    try {
+      decision = await getModelProvider().plan(input, actor);
+    } catch {
+      // Provedores remotos (LLM_PROVIDER=openai-compatible) podem falhar por rede/limite de
+      // taxa/chave inválida — nunca deixa isso subir como erro 500 genérico do Next.js.
+      return finish({
+        status: "ERROR",
+        message: "Não consegui planejar essa ação agora. Tente novamente em instantes.",
+      });
+    }
     if (decision.kind === "clarify") {
       return finish({ status: "CLARIFY", message: decision.question });
     }
@@ -118,7 +128,7 @@ export async function runAgentTurn(
       "SUCCESS",
     );
   } catch (error) {
-    // Tool failures never surface as a fabricated success — see docs/agent-contract.md.
+    // Falha de tool nunca vira sucesso fabricado — ver docs/agent-contract.md.
     const message =
       error instanceof ToolExecutionError
         ? error.userMessage

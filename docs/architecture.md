@@ -68,6 +68,26 @@ The agent runtime is composed of:
 - Response Composer
 - Trace Recorder
 
+### Planner/Intent layer (as implemented)
+
+`getModelProvider()` (`src/agent/providers/index.ts`) picks the planner from `LLM_PROVIDER`:
+
+- `local` (default) — `LocalHeuristicProvider`: deterministic substring matching against fixed
+  phrases contributed by each tool. Free, no API key, no network call, immune to prompt injection
+  by construction (there's no free-text model in this path).
+- `openai-compatible` — `src/agent/providers/openai-compatible.ts`: a real model, via any
+  OpenAI-compatible Chat Completions API with tool-calling (tested against Groq's free tier).
+  The model receives the same tool registry as JSON Schema and picks one function call — it never
+  executes anything itself. Its output (`{ tool, args }`) is handed to the *exact same* pipeline
+  as the local provider: schema validation → `requireRole` → confirmation → execution. Swapping
+  the provider changes how well natural language is understood; it changes nothing about what's
+  authorized to run.
+  - The model has no notion of "now" and is unreliable at weekday arithmetic — the prompt is
+    built fresh per call with the current date/time and a 14-day date→weekday lookup table
+    (`buildUpcomingDaysTable`) so it looks up "segunda-feira" instead of computing it.
+  - A planning failure (timeout, bad key, rate limit) is caught in `pipeline.ts` and returned as
+    a normal `ERROR` turn — it never surfaces as an unhandled 500.
+
 ## Tool principle
 
 The model never receives unrestricted database or infrastructure access.

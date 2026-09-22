@@ -26,7 +26,7 @@ export function listMatchers(): Map<string, ToolMatcher> {
   return matchers;
 }
 
-/** Test-only: clears the registry so test files can register isolated fake tools. */
+/** Só para testes: limpa o registro para que arquivos de teste registrem tools falsas isoladas. */
 export function __resetRegistryForTests() {
   tools.clear();
   matchers.clear();

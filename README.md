@@ -70,11 +70,16 @@ Claude Code is the senior engineering agent for this repository. Human approval 
 | ![Landing](docs/screenshots/01-landing.png) | ![Agent](docs/screenshots/06-agent-reservation-booked.png) | ![Security](docs/screenshots/11-security.png) |
 
 More in `docs/screenshots/`. Automated walkthrough video: `docs/demo-video/demo.mp4` (no narration — see
-`docs/demo-script.md` for the intended scene-by-scene script).
+`docs/demo-script.md` for the intended scene-by-scene script). A shorter, captioned clip focused
+just on the agent chat (natural language, confirmation flow, a declined manipulation attempt) is
+at `docs/demo-video/agent-demo.mp4` — regenerate either with `npm run docs:demo-video` /
+`npm run docs:agent-demo-video` against a running instance.
 
 ## Architecture
 
-See `docs/architecture.md` for the diagram and the security boundary it's built around.
+See `docs/architecture.md` for the diagram and the security boundary it's built around. For a deep,
+file-by-file walkthrough of the agent pipeline itself — written in pt-BR as a learning doc — see
+`docs/agent-guide.md`.
 
 ## Project status
 

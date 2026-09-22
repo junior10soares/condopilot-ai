@@ -17,7 +17,8 @@
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
     "docs:screenshots": "tsx scripts/capture-screenshots.ts",
-    "docs:demo-video": "tsx scripts/record-demo.ts"
+    "docs:demo-video": "tsx scripts/record-demo.ts",
+    "docs:agent-demo-video": "tsx scripts/record-agent-demo.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

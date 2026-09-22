@@ -1,0 +1,35 @@
+1
+00:00:00,001 --> 00:00:02,906
+CondoPilot AI — agente de IA para gestão de condomínios
+
+2
+00:00:02,906 --> 00:00:04,748
+Login como síndico (dados de demonstração, sem custo)
+
+3
+00:00:04,748 --> 00:00:08,394
+Pergunta em linguagem natural — sem um roteiro fixo de comandos
+
+4
+00:00:08,394 --> 00:00:10,196
+A resposta vem direto do banco de dados — nunca é inventada pelo modelo
+
+5
+00:00:10,196 --> 00:00:11,587
+Reconhece datas relativas ('segunda-feira') e resolve para a data certa
+
+6
+00:00:11,587 --> 00:00:15,374
+Ações sensíveis (reservas, avisos) sempre pedem confirmação explícita antes de executar
+
+7
+00:00:15,374 --> 00:00:17,654
+Tentativas de manipulação são recusadas com segurança, sem executar nada
+
+8
+00:00:17,654 --> 00:00:20,682
+Toda ação — sucesso, negada ou recusada — fica registrada para auditoria
+
+9
+00:00:20,682 --> 00:00:22,885
+CondoPilot AI — projeto de portfólio de engenharia de agentes segura

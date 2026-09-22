@@ -1,35 +1,59 @@
 1
-00:00:00,001 --> 00:00:02,906
+00:00:00,000 --> 00:00:02,905
 CondoPilot AI — agente de IA para gestão de condomínios
 
 2
-00:00:02,906 --> 00:00:04,748
+00:00:02,905 --> 00:00:05,507
 Login como síndico (dados de demonstração, sem custo)
 
 3
-00:00:04,748 --> 00:00:08,394
+00:00:05,507 --> 00:00:08,720
 Pergunta em linguagem natural — sem um roteiro fixo de comandos
 
 4
-00:00:08,394 --> 00:00:10,196
+00:00:08,720 --> 00:00:11,321
 A resposta vem direto do banco de dados — nunca é inventada pelo modelo
 
 5
-00:00:10,196 --> 00:00:11,587
-Reconhece datas relativas ('segunda-feira') e resolve para a data certa
+00:00:11,321 --> 00:00:13,923
+Cada pedido aciona a ferramenta certa automaticamente, sem frase decorada
 
 6
-00:00:11,587 --> 00:00:15,374
-Ações sensíveis (reservas, avisos) sempre pedem confirmação explícita antes de executar
+00:00:13,923 --> 00:00:16,523
+Consulta disponibilidade sem reservar nada ainda
 
 7
-00:00:15,374 --> 00:00:17,654
-Tentativas de manipulação são recusadas com segurança, sem executar nada
+00:00:16,523 --> 00:00:19,124
+Reconhece datas relativas ('segunda-feira') e resolve para a data certa
 
 8
-00:00:17,654 --> 00:00:20,682
-Toda ação — sucesso, negada ou recusada — fica registrada para auditoria
+00:00:19,124 --> 00:00:21,724
+Ações sensíveis sempre pedem confirmação explícita antes de executar
 
 9
-00:00:20,682 --> 00:00:22,885
+00:00:21,724 --> 00:00:24,324
+Ações em massa também pedem confirmação — um aviso para todos os moradores
+
+10
+00:00:24,324 --> 00:00:26,925
+Só executa depois que o usuário confirma, nunca antes
+
+11
+00:00:26,925 --> 00:00:29,526
+Pedidos fora do escopo são recusados com educação, sem inventar resposta
+
+12
+00:00:29,526 --> 00:00:32,126
+Tentativas de manipulação são recusadas com segurança, sem executar nada
+
+13
+00:00:32,126 --> 00:00:35,166
+Toda ação — sucesso, negada ou recusada — fica registrada para auditoria
+
+14
+00:00:35,166 --> 00:00:37,794
+Testes, gates de qualidade e o histórico de execuções — visíveis pra qualquer usuário logado
+
+15
+00:00:37,794 --> 00:00:40,396
 CondoPilot AI — projeto de portfólio de engenharia de agentes segura

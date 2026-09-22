@@ -59,6 +59,16 @@ export function AgentChat() {
     setBusyId(null);
   }
 
+  async function confirmTurn(id: string, userText: string, confirmed: ConfirmedCall) {
+    setBusyId(id);
+    setTurns((prev) => prev.map((t) => (t.id === id ? { ...t, result: null } : t)));
+
+    const result = await sendAgentMessage(userText, confirmed);
+
+    setTurns((prev) => prev.map((t) => (t.id === id ? { ...t, result } : t)));
+    setBusyId(null);
+  }
+
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     const text = input.trim();
@@ -104,7 +114,10 @@ export function AgentChat() {
                     onClick={() => {
                       const result = turn.result;
                       if (!result || result.status !== "PENDING_CONFIRMATION") return;
-                      void runTurn(turn.userText, { tool: result.tool, args: result.args });
+                      void confirmTurn(turn.id, turn.userText, {
+                        tool: result.tool,
+                        args: result.args,
+                      });
                     }}
                   >
                     Confirmar

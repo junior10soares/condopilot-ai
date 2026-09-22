@@ -62,7 +62,7 @@ Claude Code is the senior engineering agent for this repository. Human approval 
 | ------------------------------------------- | ---------------------------------------------------------- | --------------------------------------------- |
 | ![Landing](docs/screenshots/01-landing.png) | ![Agent](docs/screenshots/06-agent-reservation-booked.png) | ![Security](docs/screenshots/11-security.png) |
 
-More in `docs/screenshots/`. Automated walkthrough video: `docs/demo-video/demo.webm` (no narration — see
+More in `docs/screenshots/`. Automated walkthrough video: `docs/demo-video/demo.mp4` (no narration — see
 `docs/demo-script.md` for the intended scene-by-scene script).
 
 ## Architecture
@@ -91,6 +91,10 @@ npm run dev
 ```
 
 Demo accounts (seeded): `manager@condopilot.demo` / `carlos@condopilot.demo`, password `Demo@123`.
+
+Don't want to run Docker? Skip step 1 and set `DATABASE_URL` in `.env` to a free
+[Neon](https://neon.tech) Postgres connection string instead, then `npx prisma migrate deploy` (not
+`migrate dev`) followed by `npm run db:seed` — same seeded accounts, no local database to manage.
 
 ```bash
 npm run typecheck

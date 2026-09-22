@@ -54,6 +54,6 @@ it's derived from — see `src/quality/gates.ts`.
 - [x] execution trace
 - [x] architecture diagram — Mermaid in `docs/architecture.md`
 - [x] screenshots — `docs/screenshots/`
-- [x] final video — `docs/demo-video/demo.webm` (automated walkthrough, no narration)
+- [x] final video — `docs/demo-video/demo.mp4` (automated walkthrough, no narration)
 
 All gates applicable to this stage are green.

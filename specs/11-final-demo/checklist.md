@@ -11,7 +11,7 @@
 - [x] Screenshots — `docs/screenshots/` (12 real, captured pages — not mockups)
 - [x] Test report — `docs/test-report.md`, real counted numbers
 - [x] Security report — `docs/security-report.md`, consolidated threat-model coverage + honest gaps
-- [x] Demo video — `docs/demo-video/demo.webm`, automated Playwright walkthrough of the real
+- [x] Demo video — `docs/demo-video/demo.mp4`, automated Playwright walkthrough of the real
       `docs/demo-script.md` scenes (no narration — noted as a gap)
 - [x] Mobile sanity check — `e2e/mobile-sanity.spec.ts`, 390px viewport
 - [x] README polish, screenshots embedded, LICENSE added (MIT)

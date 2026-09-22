@@ -5,12 +5,16 @@
  *
  * Run against a live instance: npm run start (or dev), then:
  *   npx tsx scripts/record-demo.ts [baseUrl]
- * Saves a .webm to docs/demo-video/.
+ * Saves docs/demo-video/demo.mp4 (falls back to .webm if ffmpeg isn't installed).
  */
-import { mkdir, readdir, rename } from "node:fs/promises";
+import { mkdir, readdir, rename, unlink } from "node:fs/promises";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
 import path from "node:path";
 import { chromium } from "@playwright/test";
 import { PrismaClient } from "@prisma/client";
+
+const execFileAsync = promisify(execFile);
 
 const baseUrl = process.argv[2] ?? "http://localhost:3000";
 const outDir = path.resolve(__dirname, "../docs/demo-video");
@@ -88,12 +92,34 @@ async function main() {
 
   // Playwright names the file by an internal id — rename to something predictable.
   const files = await readdir(outDir);
-  const generated = files.find((f) => f.endsWith(".webm") && f !== "demo.webm");
-  if (generated) {
-    await rename(path.join(outDir, generated), path.join(outDir, "demo.webm"));
-  }
+  const generated = files.find((f) => f.endsWith(".webm"));
+  if (!generated) throw new Error("Playwright did not produce a .webm recording.");
+  const webmPath = path.join(outDir, "demo.webm");
+  await rename(path.join(outDir, generated), webmPath);
 
-  console.log(`Demo video saved to ${path.join(outDir, "demo.webm")}`);
+  const mp4Path = path.join(outDir, "demo.mp4");
+  try {
+    await execFileAsync("ffmpeg", [
+      "-y",
+      "-i",
+      webmPath,
+      "-c:v",
+      "libx264",
+      "-pix_fmt",
+      "yuv420p",
+      "-crf",
+      "23",
+      "-preset",
+      "medium",
+      "-movflags",
+      "+faststart",
+      mp4Path,
+    ]);
+    await unlink(webmPath);
+    console.log(`Demo video saved to ${mp4Path}`);
+  } catch {
+    console.log(`ffmpeg not available — demo video saved to ${webmPath} (not converted to mp4).`);
+  }
 }
 
 main().catch((error) => {

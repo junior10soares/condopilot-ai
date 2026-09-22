@@ -86,7 +86,7 @@ export const gateGroups: GateGroup[] = [
       {
         label: "Vídeo final",
         status: "pass",
-        note: "docs/demo-video/demo.webm — automatizado, sem narração",
+        note: "docs/demo-video/demo.mp4 — automatizado, sem narração",
       },
     ],
   },
